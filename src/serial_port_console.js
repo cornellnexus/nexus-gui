@@ -9,6 +9,7 @@ rf_port = "/dev/tty.usbserial-017543DC"
 //   })
 // })
 
+// Make sure baudRates are the same
 const port = new SerialPort({ path: rf_port, baudRate: 9600 }, function (err) {
   if (err) {
     return console.log("Error while opening port at " + rf_port)
@@ -24,7 +25,8 @@ port.on('error', function(err)  {
 port.on('data', function (data) {
   console.log('Data: ', data.toString('utf8'))
 })
- 
+
+// Allows for use of the terminal for writing - delete when done testing
 stdin.addListener("data", function(data) {
   console.log(data.toString().trim());
   port.write(data);
