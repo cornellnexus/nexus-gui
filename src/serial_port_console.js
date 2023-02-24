@@ -9,8 +9,8 @@ rf_port = "/dev/tty.usbserial-017543DC"
 //   })
 // })
 
-// Make sure baudRates are the same
-const port = new SerialPort({ path: rf_port, baudRate: 9600 }, function (err) {
+// TODO: Make sure baudRates are the same
+const port = new SerialPort({ path: rf_port, baudRate: 57600 }, function (err) {
   if (err) {
     return console.log("Error while opening port at " + rf_port)
   } else {
