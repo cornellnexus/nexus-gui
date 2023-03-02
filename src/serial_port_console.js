@@ -3,6 +3,13 @@ var stdin = process.openStdin();
 
 rf_port = "/dev/tty.usbserial-017543DC"
 // Code to determine the path of the rf module - should be /dev/tty.usbserial-017543DC
+
+// const func = async () => {
+//   var s = await SerialPort.list()
+//   console.log(s)
+// }
+// func()
+
 // SerialPort.list().then(ports => {
 //   ports.forEach(function(port) {
 //       console.log(port.path)
