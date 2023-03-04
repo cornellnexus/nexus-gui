@@ -12,6 +12,7 @@
   "license": "",
   "dependencies": {
     "express": "^4.18.2",
-    "nodemon": "^2.0.21"
+    "nodemon": "^2.0.21",
+    "simple-ssh": "^1.1.1"
   }
- }
+}

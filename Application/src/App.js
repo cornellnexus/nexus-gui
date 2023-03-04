@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios';
 import logo from './logo.svg';
 import './App.css';
 
@@ -7,18 +8,27 @@ function App() {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const [ip, setIP] = useState();
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    await axios.post('../../handshake', {
+      params: {
+        username: username,
+        password: password,
+        ip: ip
+    }
+    }).then(response => {
+      console.log("Successful");
+      setErrorMessage("");
+    }).catch(response => {
+      setErrorMessage(response);
+      // setErrorMessage("Error with Handshake - Please check your network connection / inputs and try again");
+    })
   }
 
   return (
     <>
-      <form action="../../post" method="post" 
-              className="form">
-          <button type="submit">Connected?</button>
-        </form>
-
       <form onSubmit={handleSubmit}>
         <label>
           Username:
@@ -40,6 +50,7 @@ function App() {
         <br></br>
         <input type="submit" value="Connect to Robot" />
       </form>
+      <p id='errorMessage' style={{color: "red"}}>{errorMessage}</p>
     </>
   );
 }
