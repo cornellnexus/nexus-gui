@@ -20,7 +20,7 @@ function App() {
     }
     }).then(response => {
       console.log("Successful");
-      setErrorMessage("");
+      setErrorMessage("SSH connection was successful"); // Change to navigate to new page
     }).catch(response => {
       setErrorMessage(response);
       // setErrorMessage("Error with Handshake - Please check your network connection / inputs and try again");
