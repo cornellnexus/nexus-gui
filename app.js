@@ -42,8 +42,16 @@ app.post("/handshake", (req, res) => {
   }
 
   // If ssh connection is successful, change into electrical directory and run handshake.py
-  ssh.exec('cd Desktop/src/electrical', {})
-  .exec('python handshake.py', {}).start();
+  ssh.exec('cd Desktop/src/electrical', {
+    out: function(stdout) {
+      console.log(stdout);
+  }
+  })
+  .exec('python handshake.py', {
+    out: function(stdout) {
+      console.log(stdout)
+  }
+  }).start();
 
   // Runs laptop's handshake, defined in method below
   if (handshake()) {
