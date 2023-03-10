@@ -10,7 +10,6 @@ const { SerialPort } = require('serialport');
 //   })
 // })
 rf_port = "/dev/tty.usbserial-017543DC"
-
 const port = new SerialPort({ path: rf_port, baudRate: 57600 }, function (err) {
   if (err) {
     return console.log("Error while opening port at " + rf_port)
