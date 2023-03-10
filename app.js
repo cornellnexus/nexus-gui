@@ -20,6 +20,8 @@ const port = new SerialPort({ path: rf_port, baudRate: 57600 }, function (err) {
 
 app.use(express.json());
 
+let ssh = undefined;
+
 // Route that handles initial handshake between laptop and robot
 app.post("/handshake", (req, res) => {
   // Gets body parameters from post request
@@ -28,7 +30,7 @@ app.post("/handshake", (req, res) => {
   const ip = req.body.params.ip;
   
   // Creates new ssh connection with robot given body parameters
-  var ssh = new SSH({
+  ssh = new SSH({
     host: ip,
     user: username,
     pass: password
@@ -83,6 +85,34 @@ const handshake = async () => {
   }
   return false;
 };
+
+// Route that passes data from robot to React app
+app.post("/port", (req, res) => {
+
+});
+
+// Route that executes shell commands on robot in script tab of React app
+app.post("/shell", (req, res) => {
+
+  const command = req.body.params.command;
+
+  if (ssh != undefined) {
+    ssh.exec(command, {
+      out: function(stdout) {
+        res.json(stdout);
+      },
+      err: function(stderr) {
+          res.json(stderr);
+      }
+    }).start();
+  } else {
+    res.status(400).json("No SSH connection established")
+    return
+  }
+
+  res.status(400).json({"error": "Could not run command"})
+
+});
   
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, console.log(`Server started on port ${PORT}`));
