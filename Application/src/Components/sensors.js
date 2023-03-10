@@ -1,6 +1,6 @@
 import './sensors.css'
 
-function Mission() {
+function Sensors() {
     return (
         <>
             <h1>Sensors</h1>
@@ -8,4 +8,4 @@ function Mission() {
     )
 }
 
-export default Mission
+export default Sensors

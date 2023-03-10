@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
 
 function App() {
+  let navigate = useNavigate();
 
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
@@ -18,8 +20,7 @@ function App() {
         ip: ip
     }
     }).then(response => {
-      console.log("Successful");
-      setErrorMessage("SSH connection was successful"); // Change to navigate to new page
+      navigate("/mission", {state: {ip: ip}});
     }).catch(response => {
       setErrorMessage(response.response.data.error);
     })

@@ -1,6 +1,6 @@
 import './settings.css'
 
-function Mission() {
+function Settings() {
     return (
         <>
             <h1>Settings</h1>
@@ -8,4 +8,4 @@ function Mission() {
     )
 }
 
-export default Mission
+export default Settings

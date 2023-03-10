@@ -1,6 +1,6 @@
 import './overview.css'
 
-function Mission() {
+function Overview() {
     return (
         <>
             <h1>Overview</h1>
@@ -8,4 +8,4 @@ function Mission() {
     )
 }
 
-export default Mission
+export default Overview
