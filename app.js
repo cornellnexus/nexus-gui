@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
-var SSH = require('simple-ssh');
 const { SerialPort } = require('serialport');
+const { NodeSSH } = require('node-ssh')
 
 // Code to determine the path of the rf module - should be /dev/tty.usbserial-017543DC
 // SerialPort.list().then(ports => {
@@ -17,10 +17,9 @@ const port = new SerialPort({ path: rf_port, baudRate: 57600 }, function (err) {
     return console.log("Port opened successfully at " + rf_port)
   }
 })
-
 app.use(express.json());
 
-let ssh = undefined;
+const ssh = new NodeSSH()
 
 // Route that handles initial handshake between laptop and robot
 app.post("/handshake", (req, res) => {
@@ -28,46 +27,38 @@ app.post("/handshake", (req, res) => {
   const username = req.body.params.username;
   const password = req.body.params.password;
   const ip = req.body.params.ip;
-  
+
+  // TODO: Catch incorrect connection / ssh error
   // Creates new ssh connection with robot given body parameters
-  ssh = new SSH({
+  ssh.connect({
     host: ip,
-    user: username,
-    pass: password
-  });
-
-  // If ssh connection was unsuccessful, return error and break out of function
-  if (ssh._c.config.host == undefined) {
-    res.status(400).json({ "error": "SSH Connection unsuccessful" });
-    return;
-  }
-
-  // If ssh connection is successful, change into electrical directory and run handshake.py
-  ssh.exec('cd Desktop/src/electrical', {
-    out: function(stdout) {
-      console.log(stdout);
-  }
+    username: username,
+    port: 22,
+    password,
+    tryKeyboard: true,
+  }).then(function() {
+    // If ssh connection is successful, change into electrical directory and run handshake.py
+    ssh.exec('sudo python handshake.py', [], { cwd: '/home/nexus/Desktop/src/electrical', stream: 'stdout', options: { pty: true } }).then(function(result) {
+      console.log('STDOUT: ' + result)
+    })
+  }).then(async function() {
+    // Runs laptop's handshake, defined in method below
+    if (handshake()) {
+      res.status(200);
+      return;
+    }
+    // If handshake is unsuccessful, return error
+    res.status(400).json({ "error": "Handshake unsuccessful" });
   })
-  .exec('python handshake.py', {
-    out: function(stdout) {
-      console.log(stdout)
-  }
-  }).start();
-
-  // Runs laptop's handshake, defined in method below
-  if (handshake()) {
-    res.status(200);
-    return;
-  }
-  // If handshake is unsuccessful, return error
-  res.status(400).json({ "error": "Handshake unsuccessful" });
 });
 
 // Fuction to handle handshake
-const handshake = async () => {
+const handshake = () => {
+  console.log("Running JS handshake")
   var text = "";
   // First message sent in handshake from laptop to robot
   port.write("computer_to_robot");
+  console.log("Message sent")
   var endTime = Date.now() + 5000;
 
   // If the laptop's port recieves data, set text equal to that data
@@ -92,19 +83,23 @@ app.post("/port", (req, res) => {
 });
 
 // Route that executes shell commands on robot in script tab of React app
+// TODO: CHANGE TO USE NODE-SSH
 app.post("/shell", (req, res) => {
 
   const command = req.body.params.command;
 
   if (ssh != undefined) {
-    ssh.exec(command, {
-      out: function(stdout) {
-        res.json(stdout);
-      },
-      err: function(stderr) {
-          res.json(stderr);
-      }
-    }).start();
+    // ssh.exec(command, {
+    //   out: function(stdout) {
+    //     res.json(stdout);
+    //   },
+    //   err: function(stderr) {
+    //       res.json(stderr);
+    //   }
+    // }).start();
+    ssh.exec('sudo python handshake.py', [], { cwd: '/home/nexus/Desktop/src/electrical', stream: 'stdout', options: { pty: true } }).then(function(result) {
+      console.log('STDOUT: ' + result)
+    })
   } else {
     res.status(400).json("No SSH connection established")
     return
