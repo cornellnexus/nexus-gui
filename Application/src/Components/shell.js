@@ -7,14 +7,15 @@ function Shell() {
     const [command, setCommand] = useState();
     const [responses, setResponses] = useState([]);
 
+    // Posts command to backend, which will run the command on the Pi and return the response
+    // Adds response to responses array, which is displayed on screen
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = await axios.post('../../../shell', {
-          params: {
-            command: command
-        }
+            params: {
+                command: command
+            }
         }).catch(response => {
-            console.log(response)
             setResponses((prevResponses) => [
                 ...prevResponses,
                 {
@@ -22,23 +23,28 @@ function Shell() {
                     "response": "error - " + response.response.data
                 }
             ]);
+            return;
         })
-        if (data != undefined) {
-            // console.log(data)
-            setResponses((prevResponses) => [
-                ...prevResponses,
-                {
-                    "command": command,
-                    // Change probably to see correct format of return json
-                    "response": data.data   
-                }
-            ]);
-        }  
-      }
+        data ?
+        setResponses((prevResponses) => [
+            ...prevResponses,
+            {
+                "command": command,
+                "response": data.data.data  
+            }
+        ]) : setResponses((prevResponses) => [
+            ...prevResponses,
+            {
+                "command": command,
+                "response": "Command ran but no output"  
+            }
+        ]); 
+
+    }
 
     return (
         <>
-            <h1>Scripts</h1>
+            <h1>Shell</h1>
             <form onSubmit={handleSubmit}>
                 <label>
                     Command:

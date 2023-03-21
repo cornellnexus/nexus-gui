@@ -10,7 +10,11 @@ function App() {
   const [password, setPassword] = useState();
   const [ip, setIP] = useState();
   const [errorMessage, setErrorMessage] = useState("");
+  const [debug, setDebug] = useState("");
 
+  // Posts form data to backend, which will try to initialize handshake
+  // If successful, navigates to mission page
+  // If not, outputs error
   const handleSubmit = async (e) => {
     e.preventDefault();
     await axios.post('../../handshake', {
@@ -22,6 +26,7 @@ function App() {
     }).then(response => {
       navigate("/mission", {state: {ip: ip}});
     }).catch(response => {
+      setDebug(debug + 1)
       setErrorMessage(response.response.data.error);
     })
   }
@@ -49,6 +54,7 @@ function App() {
         <br></br>
         <input type="submit" value="Connect to Robot" />
       </form>
+      <p>{debug}</p>
       <p id='errorMessage' style={{color: "red"}}>{errorMessage}</p>
     </>
   );
