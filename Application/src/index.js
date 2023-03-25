@@ -7,8 +7,6 @@ import App from './App';
 import Mission from './Components/mission'
 import Overview from './Components/overview'
 import Shell from './Components/shell'
-import Sensors from './Components/sensors'
-import Scripts from './Components/scripts'
 import Settings from './Components/settings'
 
 import reportWebVitals from './reportWebVitals';
@@ -22,8 +20,6 @@ root.render(
       <Route path='/mission' element={<Mission />} />
       <Route path='/overview' element={<Overview />} />
       <Route path='/shell' element={<Shell />} />
-      <Route path='/sensors' element={<Sensors />} />
-      <Route path='/scripts' element={<Scripts />} />
       <Route path='/settings' element={<Settings />} />
     </Routes>
   </Router>

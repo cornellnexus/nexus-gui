@@ -1,0 +1,15 @@
+.Shell {
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
+    display: flex;
+}
+
+.terminalContainer {
+    color: white;
+    background-color: black;
+    border-radius: 10px;
+    height: 80%;
+    width: 1100px;
+    margin-left: 5%;
+}

@@ -1,10 +1,16 @@
 import './settings.css'
+import Sidebar from './sidebar'
 
 function Settings() {
     return (
-        <>
-            <h1>Settings</h1>
-        </>
+        <div className='Settings'>
+            <div>
+                <Sidebar />
+            </div>
+            <div>
+                <h1>Settings</h1>
+            </div>
+        </div>
     )
 }
 

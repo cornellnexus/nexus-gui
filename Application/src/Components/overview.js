@@ -1,10 +1,16 @@
 import './overview.css'
+import Sidebar from './sidebar'
 
 function Overview() {
     return (
-        <>
-            <h1>Overview</h1>
-        </>
+        <div className='Overview'>
+            <div>
+                <Sidebar />
+            </div>
+            <div>
+                <h1>Overview</h1>
+            </div>
+        </div>
     )
 }
 

@@ -26,6 +26,7 @@ const conn = new Client();
 var username;
 var password;
 var ip;
+var commands = ""
 
 const reconnect = () => {
   conn.connect({
@@ -121,20 +122,27 @@ app.post("/port", (req, res) => {
 });
 
 // Route that executes shell commands on robot in script tab of React app
-// TODO: IMPLEMENT RECONNECT FUNCTION IF SSH CONNECTION IS DROPPED
 app.post("/shell", (req, res) => {
-  const command = req.body.params.command;
+  // See if SSH connection has been dropped and reconnect if it has been
+  if (conn.config.host == undefined) {
+    reconnect()
+  }
 
-  conn.exec(command, (err, stream) => {
+  const command = req.body.params.command;
+  commands += command + "; "
+
+  conn.exec(commands, (err, stream) => {
     if (err) throw err;
     stream.on('close', (code, signal) => {
       res.status(200).json({"Output": "Input stream closed with code " + code + " and signal " + signal})
     }).on('data', (data) => {
-      res.status(200).json({"Output": data})
+      res.status(200).json({"" : data})
     }).stderr.on('data', (data) => {
+      commands = commands.substring(0, commands.length - command.length)
       res.status(400).json({"Error": "Could not run command - " + data})
     });
   });
+
 });
   
 const PORT = process.env.PORT || 8080;

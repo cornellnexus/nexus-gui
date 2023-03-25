@@ -33,6 +33,7 @@ function App() {
 
   return (
     <>
+    <div className='App'> 
       <form onSubmit={handleSubmit}>
         <label>
           Username:
@@ -56,6 +57,7 @@ function App() {
       </form>
       <p>{debug}</p>
       <p id='errorMessage' style={{color: "red"}}>{errorMessage}</p>
+    </div>
     </>
   );
 }
