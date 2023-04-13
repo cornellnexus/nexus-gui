@@ -121,12 +121,26 @@ app.post("/port", (req, res) => {
 
 });
 
-// Route that executes shell commands on robot in script tab of React app
-app.post("/shell", (req, res) => {
+// Route that is hit on shell page load to ensure there is a connection to the pi and return the current working directory
+app.get("/shell-mount", (req, res) => {
   // See if SSH connection has been dropped and reconnect if it has been
   if (conn.config.host == undefined) {
     reconnect()
   }
+  conn.execute("pwd", (err, stream) => {
+    if (err) throw err;
+    stream.on('close', (code, signal) => {
+      res.status(200).json({"Output": "Input stream closed with code " + code + " and signal " + signal})
+    }).on('data', (data) => {
+      res.status(200).json({"pwd" : "nexus@" + ip + " ~ " + data})
+    }).stderr.on('data', (data) => {
+      res.status(400).json({"Error": "Could not get current working directory"})
+    });
+  })
+})
+
+// Route that executes shell commands on robot in script tab of React app
+app.post("/shell", (req, res) => {
 
   const command = req.body.params.command;
   commands += command + "; "
