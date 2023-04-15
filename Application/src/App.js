@@ -10,7 +10,6 @@ function App() {
   const [password, setPassword] = useState();
   const [ip, setIP] = useState();
   const [errorMessage, setErrorMessage] = useState("");
-  const [debug, setDebug] = useState("");
 
   // Posts form data to backend, which will try to initialize handshake
   // If successful, navigates to mission page
@@ -26,37 +25,44 @@ function App() {
     }).then(response => {
       navigate("/mission", {state: {ip: ip}});
     }).catch(response => {
-      setDebug(debug + 1)
       setErrorMessage(response.response.data.error);
     })
   }
 
   return (
     <>
-    <div className='App'> 
-      <form onSubmit={handleSubmit}>
-        <label>
-          Username:
-          <br></br>
-          <input type={"text"} onChange={(e) => setUsername(e.target.value)}/>
-        </label>
-        <br></br>
-        <label>
-          Password:
-          <br></br>
-          <input type={"password"} onChange={(e) => setPassword(e.target.value)}/>
-        </label>
-        <br></br>
-        <label>
-          IP Address:
-          <br></br>
-          <input type={"text"} onChange={(e) => setIP(e.target.value)}/>
-        </label>
-        <br></br>
-        <input type="submit" value="Connect to Robot" />
-      </form>
-      <p>{debug}</p>
-      <p id='errorMessage' style={{color: "red"}}>{errorMessage}</p>
+    <div className='App'>
+      <div className='header'>
+        <div className='logo'>
+          <img style={{"width": '150px', 'marginLeft': '50px', 'marginTop': '10px'}} src={require('./Images/logo.png')} />
+        </div>
+      </div>
+
+      <div className='form-container'>
+        <div className='form'>
+          <h2>Setup</h2> 
+          <form onSubmit={handleSubmit}>
+            <div className='input-box'>
+              <input type={"text"} placeholder={"Username"} onChange={(e) => setUsername(e.target.value)} required />
+            </div>
+
+            <div className='input-box'>
+              <input type={"password"} placeholder={"Password"} onChange={(e) => setPassword(e.target.value)} required />
+            </div>
+
+            <div className='input-box'>
+              <input type={"text"} placeholder={"IP Address"} onChange={(e) => setIP(e.target.value)} required />
+            </div>
+
+            <div className='input-box button'>
+              <input type={"submit"} value="Connect to Robot" />
+            </div>
+
+            <p id='errorMessage' style={{color: "red"}}>{errorMessage}</p>
+        </form>
+      </div>
+      </div>
+      
     </div>
     </>
   );

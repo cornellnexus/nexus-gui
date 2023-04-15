@@ -7,7 +7,7 @@ function Shell() {
 
     const [command, setCommand] = useState();
     const [responses, setResponses] = useState([]);
-    const [connectedToPi, setConnectedToPi] = useState(false)
+    const [connectedToPi, setConnectedToPi] = useState(true)
     const [cwd, setCwd] = useState()
 
     const currentdate = new Date();
@@ -33,7 +33,7 @@ function Shell() {
     // Run on page load to ensure there is a connection to the pi
     const pageLoad = async (e) => {
         const data = await axios.get('../../../shell-mount', {}).catch(response => {
-            setConnectedToPi(false)
+            // setConnectedToPi(false)
         })
         if (data) {
             setConnectedToPi(true)
