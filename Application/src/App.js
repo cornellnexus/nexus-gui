@@ -6,16 +6,38 @@ import './App.css';
 function App() {
   let navigate = useNavigate();
 
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
+  // TODO: Delete default values for username and password when done testing and change page to 0
+  const [username, setUsername] = useState("nexus");
+  const [password, setPassword] = useState("raspberry");
   const [ip, setIP] = useState();
-  const [errorMessage, setErrorMessage] = useState("");
 
-  // Posts form data to backend, which will try to initialize handshake
-  // If successful, navigates to mission page
+  const [lat, setLat] = useState();
+  const [long, setLong] = useState();
+  const [maxVelocity, setMaxVelocity] = useState();
+  const [radius, setRadius] = useState();
+  const [turningRadius, setTurningRadius] = useState();
+  const [travType, setTravType] = useState();
+  const [baseLat, setBaseLat] = useState();
+  const [baseLong, setBaseLong] = useState();
+
+  const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(0);
+
+  // Posts setup data to backend, which will try to initialize handshake
+  // If successful, changes form page to mission
   // If not, outputs error
-  const handleSubmit = async (e) => {
+  const handleSetup = async (e) => {
     e.preventDefault();
+    setErrorMessage();
+
+    const isValidIp = /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/gi;
+    if (!isValidIp.test(ip)) {
+      setErrorMessage("Please enter a valid IP address")
+      return;
+    }
+
+    setLoading(true)
     await axios.post('../../handshake', {
       params: {
         username: username,
@@ -23,10 +45,19 @@ function App() {
         ip: ip
     }
     }).then(response => {
-      navigate("/mission", {state: {ip: ip}});
+      setLoading(false);
+      setPage(1)
     }).catch(response => {
       setErrorMessage(response.response.data.error);
+      setLoading(false);
     })
+  }
+
+  // Posts mission data to backend, which will try to intialize robot with those parameters
+  // If successful, navigates to overview page
+  // If not, outputs error
+  const handleMission = async (e) => {
+
   }
 
   return (
@@ -38,30 +69,99 @@ function App() {
         </div>
       </div>
 
+      {page === 0 ?
       <div className='form-container'>
         <div className='form'>
-          <h2>Setup</h2> 
-          <form onSubmit={handleSubmit}>
+          <h2>Setup</h2>
+          <form onSubmit={handleSetup}>
             <div className='input-box'>
-              <input type={"text"} placeholder={"Username"} onChange={(e) => setUsername(e.target.value)} required />
+              <input type={"text"} value={"nexus"} placeholder={"Username"} onChange={(e) => setUsername(e.target.value)} required />
             </div>
 
             <div className='input-box'>
-              <input type={"password"} placeholder={"Password"} onChange={(e) => setPassword(e.target.value)} required />
+              <input type={"password"} value={"raspberry"} placeholder={"Password"} onChange={(e) => setPassword(e.target.value)} required />
             </div>
 
             <div className='input-box'>
               <input type={"text"} placeholder={"IP Address"} onChange={(e) => setIP(e.target.value)} required />
             </div>
 
-            <div className='input-box button'>
-              <input type={"submit"} value="Connect to Robot" />
+            <div className='errorMessage'>
+              {errorMessage}
             </div>
 
-            <p id='errorMessage' style={{color: "red"}}>{errorMessage}</p>
+            {loading ? 
+            <div className='input-box button loading'>
+              <input style={{"color": "white"}} type={"submit"} value="Connecting to Robot..." />
+            </div>
+            : 
+            <div className='input-box button'>
+              <input style={{"color": "white"}} type={"submit"} value="Connect to Robot" />
+            </div>
+            }
+
         </form>
       </div>
       </div>
+    :
+    <div className='form-container'>
+        <div className='form'>
+          <h2>Robot</h2> 
+          <form onSubmit={handleMission}>
+            <div className='input-box'>
+              <input type={"text"} placeholder={"Robot Latitude"} onChange={(e) => setLat(e.target.value)} required />
+            </div>
+
+            <div className='input-box'>
+              <input type={"text"} placeholder={"Robot Longitude"} onChange={(e) => setLong(e.target.value)} required />
+            </div>
+
+            <div className='input-box'>
+              <input type={"text"} placeholder={"Robot Max Velocity"} onChange={(e) => setMaxVelocity(e.target.value)} required />
+            </div>
+
+            <div className='input-box'>
+              <input type={"text"} placeholder={"Robot Radius"} onChange={(e) => setRadius(e.target.value)} required />
+            </div>
+
+            <div className='input-box'>
+              <input type={"text"} placeholder={"Robot Turning Radius"} onChange={(e) => setTurningRadius(e.target.value)} required />
+            </div>
+
+            <h2>Mission</h2>
+
+            {/* <div className='input-box'>
+              <input type={"text"} placeholder={"Mission Traversal Type"} onChange={(e) => setTravType(e.target.value)} required />
+            </div> */}
+
+            <h2>Base Station</h2>
+
+            <div className='input-box'>
+              <input type={"text"} placeholder={"Base Station Latitude"} onChange={(e) => setBaseLat(e.target.value)} required />
+            </div>
+
+            <div className='input-box'>
+              <input type={"text"} placeholder={"Base Station Longitude"} onChange={(e) => setBaseLong(e.target.value)} required />
+            </div>
+
+            <div className='errorMessage'>
+              {errorMessage}
+            </div>
+
+            {loading ? 
+            <div className='input-box button loading'>
+              <input style={{"color": "white"}} type={"submit"} value="Initializing Robot..." />
+            </div>
+            : 
+            <div className='input-box button'>
+              <input style={{"color": "white"}} type={"submit"} value="Initialize Robot" />
+            </div>
+            }
+
+        </form>
+      </div>
+      </div>
+      }
       
     </div>
     </>

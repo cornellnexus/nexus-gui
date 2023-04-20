@@ -31,6 +31,8 @@
     position: relative;
     max-width: 430px;
     width: 100%;
+    max-height: 60vh;
+    overflow-y: auto;
     background: rgba(255, 255, 255, 0.9);
     padding: 34px;
     border-radius: 6px;
@@ -93,9 +95,19 @@ form .input-box input {
 
 .button input {
     background-color: #4070f4;
+    color: white;
 }
 
 .button input:hover {
     cursor: pointer;
     background-color: rgba(64, 112, 244, 0.8);
+}
+
+.button .loading {
+    background-color: rgba(64, 112, 244, 0.8);
+}
+
+.form .errorMessage {
+    text-align: center;
+    color: red;
 }
