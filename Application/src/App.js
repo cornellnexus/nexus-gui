@@ -13,16 +13,13 @@ function App() {
 
   const [lat, setLat] = useState();
   const [long, setLong] = useState();
-  const [maxVelocity, setMaxVelocity] = useState();
-  const [radius, setRadius] = useState();
-  const [turningRadius, setTurningRadius] = useState();
-  const [travType, setTravType] = useState();
+  const [travType, setTravType] = useState("lawnmower");
   const [baseLat, setBaseLat] = useState();
   const [baseLong, setBaseLong] = useState();
 
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
 
   // Posts setup data to backend, which will try to initialize handshake
   // If successful, changes form page to mission
@@ -57,7 +54,24 @@ function App() {
   // If successful, navigates to overview page
   // If not, outputs error
   const handleMission = async (e) => {
-
+    e.preventDefault();
+    setErrorMessage();
+    setLoading(true);
+    await axios.post('../../mission', {
+      params: {
+        robot_latitude: lat,
+        robot_longitude: long,
+        traversal_type: travType,
+        base_latitude: baseLat,
+        base_longitude: baseLong
+      }
+    }).then(response => {
+      setLoading(false);
+      navigate('/overview')
+    }).catch(response => {
+      setErrorMessage(response.response.data.error);
+      setLoading(false);
+    })
   }
 
   return (
@@ -107,7 +121,7 @@ function App() {
     <div className='form-container'>
         <div className='form'>
           <h2>Robot</h2> 
-          <form onSubmit={handleMission}>
+          <form style={{'marginTop': '0px'}} onSubmit={handleMission}>
             <div className='input-box'>
               <input type={"text"} placeholder={"Robot Latitude"} onChange={(e) => setLat(e.target.value)} required />
             </div>
@@ -116,23 +130,30 @@ function App() {
               <input type={"text"} placeholder={"Robot Longitude"} onChange={(e) => setLong(e.target.value)} required />
             </div>
 
-            <div className='input-box'>
-              <input type={"text"} placeholder={"Robot Max Velocity"} onChange={(e) => setMaxVelocity(e.target.value)} required />
+            <h2>Traversal Type</h2>
+
+            <div>
+              <input className='radio' type={"radio"} value={"lawnmower"} checked={travType === "lawnmower"} onChange={(e) => {
+                setTravType(e.target.value)
+              }} />
+              <label htmlFor='Lawnmower'>Lawnmower</label>
             </div>
 
-            <div className='input-box'>
-              <input type={"text"} placeholder={"Robot Radius"} onChange={(e) => setRadius(e.target.value)} required />
+            <div>
+              <input className='radio' type={"radio"} value={"spiral"} checked={travType === "spiral"} onChange={(e) => {
+                setTravType(e.target.value)
+              }} />
+              <label htmlFor='Spiral'>Spiral</label>
             </div>
 
-            <div className='input-box'>
-              <input type={"text"} placeholder={"Robot Turning Radius"} onChange={(e) => setTurningRadius(e.target.value)} required />
+            <div>
+              <input className='radio' type={"radio"} value={"lawnmower b"} checked={travType === "lawnmower b"} onChange={(e) => {
+                setTravType(e.target.value)
+              }} />
+              <label htmlFor='Lawnmower B'>Lawnmower B</label>
             </div>
 
-            <h2>Mission</h2>
-
-            {/* <div className='input-box'>
-              <input type={"text"} placeholder={"Mission Traversal Type"} onChange={(e) => setTravType(e.target.value)} required />
-            </div> */}
+            <h2>Grid</h2>
 
             <h2>Base Station</h2>
 
