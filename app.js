@@ -26,6 +26,13 @@ const conn = new Client();
 var username;
 var password;
 var ip;
+
+var robot_latitude;
+var robot_longitude;
+var traversal_type;
+var base_latitude;
+var base_longitude;
+
 var commands = ""
 
 const reconnect = () => {
@@ -115,6 +122,27 @@ const handshake2 = () => {
   })
   return false;
 }
+
+// Route that initiates mission after submitting form
+app.post("/mission", (req, res) => {
+  robot_latitude = req.body.params.robot_latitude;
+  robot_longitude = req.body.params.robot_longitude;
+  traversal_type = req.body.params.traversal_type;
+  base_latitude = req.body.params.base_latitude;
+  base_longitude = req.body.params.base_longitude;
+
+  // TODO: Put command to run robot with kwargs
+  conn.execute("", (err, stream) => {
+    if (err) throw err;
+    stream.on('close', (code, signal) => {
+      res.status(200).json({"Output": "Input stream closed with code " + code + " and signal " + signal})
+    }).on('data', (data) => {
+      res.status(200);
+    }).stderr.on('data', (data) => {
+      res.status(400).json({"Error": data})
+    });
+  })
+})
 
 // Route that passes data from robot to React app
 app.post("/port", (req, res) => {
