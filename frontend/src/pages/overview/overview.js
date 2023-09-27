@@ -1,19 +1,19 @@
-import './overview.css'
-import Sidebar from './sidebar'
+import "./overview.css";
+import Sidebar from "../../components/sidebar/sidebar";
 
 // https://www.youtube.com/watch?v=wYpCWwD1oz0
 
 function Overview() {
-    return (
-        <div className='Overview'>
-            <div>
-                <Sidebar />
-            </div>
-            <div>
-                <h1>Overview</h1>
-            </div>
-        </div>
-    )
+  return (
+    <div className="Overview">
+      <div>
+        <Sidebar />
+      </div>
+      <div>
+        <h1>Overview</h1>
+      </div>
+    </div>
+  );
 }
 
-export default Overview
+export default Overview;
