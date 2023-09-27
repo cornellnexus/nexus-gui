@@ -11,6 +11,6 @@ Output in console should look like:
 [nodemon] starting `node app.js`
 Server started on port 8080
 
-STEP 2: Run "npm install" and "npm start" in frontend/src directory to start React Application
+STEP 2: In a different terminal, run "npm install" and "npm start" in frontend/src directory to start React Application
 
 STEP 3: If not done automatically, go to http://localhost:3000 in your browser
