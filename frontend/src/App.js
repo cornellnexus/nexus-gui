@@ -7,6 +7,7 @@ import Mission from "./pages/mission/mission";
 import Overview from "./pages/overview/overview";
 import Shell from "./pages/shell/shell";
 import Settings from "./pages/settings/settings";
+import Sidebar from "./components/sidebar/sidebar";
 
 function App() {
   return (
@@ -14,6 +15,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Navbar />}>
           <Route path="" element={<Login />} />
+        </Route>
+        <Route path="/" element={<Sidebar />}>
           <Route path="/mission" element={<Mission />} />
           <Route path="/overview" element={<Overview />} />
           <Route path="/shell" element={<Shell />} />

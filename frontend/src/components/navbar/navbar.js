@@ -4,7 +4,12 @@ import { Outlet } from "react-router-dom";
 function Navbar() {
   return (
     <>
-      <h1>Nav</h1>
+      <div className="navbar-container">
+        <div className="navbar">
+          <img className="nav-logo" src={require("../../assets/logo.png")} />
+        </div>
+      </div>
+
       <Outlet />
     </>
   );

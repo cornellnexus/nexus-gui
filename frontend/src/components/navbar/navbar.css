@@ -1,0 +1,16 @@
+.navbar-container {
+  width: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  
+}
+
+.navbar {
+  width: 90%;
+  padding: 1%;
+}
+
+.nav-logo {
+  width: 10%;
+}

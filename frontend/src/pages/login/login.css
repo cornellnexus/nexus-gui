@@ -2,11 +2,6 @@
   box-sizing: border-box;
 }
 
-.header {
-  width: 100%;
-  background-color: rgb(255, 255, 255);
-}
-
 .form-container {
   min-height: 100vh;
   display: flex;
