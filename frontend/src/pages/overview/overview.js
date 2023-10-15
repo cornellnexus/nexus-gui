@@ -9,8 +9,19 @@ function Overview() {
       <div>
         <Sidebar />
       </div>
-      <div>
-        <h1>Overview</h1>
+      <div className="Overview-component">
+        <h1 id="Overview-title">Overview</h1>
+        <div className="Subcomponent-wrapper">
+          <div className="Subcomponent">
+            <h3 className="Subcomponent-title">Battery</h3>
+          </div>
+          <div className="Subcomponent">
+            <h3 className="Subcomponent-title">Sensors</h3>
+          </div>
+          <div id="Final-subcomponent">
+            <h3 className="Subcomponent-title">Metrics</h3>
+          </div>
+        </div>
       </div>
     </div>
   );
