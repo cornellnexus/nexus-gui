@@ -1,37 +1,39 @@
 .Overview {
-    width: 100%;
-    min-height: 100vh;
-    height: 100%;
-    display: flex;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  display: flex;
 }
 .Overview-component {
-    height: 100%;
-    width: 100%;
-    display: block;
-    text-align: center;
-    border: 1px black solid;
-    border-radius: 10px;
-    margin: 0 1rem 0 1rem;
+  height: 100%;
+  width: 100%;
+  display: block;
+  text-align: center;
+  border: 2px black solid;
+  border-radius: 10px;
+  margin: 0 1rem 0 1rem;
+  box-shadow: 0px 5px 18px #9d9c9c;
 }
 #Overview-title {
-    text-decoration: underline;
-    padding: 1rem 0 1rem 0;
+  text-decoration: underline;
+  padding: 1rem 0 1rem 0;
 }
 .Subcomponent-wrapper {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 .Subcomponent {
-    width: 50%;
-    border: 1px black solid;
-    padding: 1rem 0 1rem 0;
+  width: calc(50% - 2rem);
+  border: 1.5px black solid;
+  padding: 1rem 0 1rem 0;
+  margin: 0 1rem 0 1rem;
 }
 #Final-subcomponent {
-    width: 100%;
-    border: 1px black solid;
-    padding: 1rem 0 1rem 0;
-    margin: 0 10% 0 10%;
+  width: 100%;
+  border: 1.5px black solid;
+  padding: 1rem 0 1rem 0;
+  margin: 1rem;
 }
 .Subcomponent-title {
-    text-decoration: underline;
+  text-decoration: underline;
 }
