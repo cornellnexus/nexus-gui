@@ -1,5 +1,6 @@
 import "./overview.css";
 import Sidebar from "../../components/sidebar/sidebar";
+import Clock from "../../components/clock/clock";
 
 // https://www.youtube.com/watch?v=wYpCWwD1oz0
 
@@ -10,6 +11,9 @@ function Overview() {
         <Sidebar />
       </div>
       <div className="Overview-component">
+        <div className="clock">
+          <Clock />
+        </div>
         <h1 id="Overview-title">Overview</h1>
         <div className="Subcomponent-wrapper">
           <div className="Subcomponent">
