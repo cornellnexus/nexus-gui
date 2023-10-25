@@ -30,17 +30,30 @@
 .Subcomponent {
   width: calc(50% - 2rem);
   border: 1.5px black solid;
-  padding: 1rem 0 1rem 0;
   margin: 0 1rem 0 1rem;
-}
-
-#Final-subcomponent {
-  width: 100%;
-  border: 1.5px black solid;
-  padding: 1rem 0 1rem 0;
-  margin: 1rem;
 }
 
 .Subcomponent-title {
   text-decoration: underline;
+}
+
+.Final-subcomponent {
+  width: 100%;
+  border: 1.5px black solid;
+  margin: 1rem;
+}
+
+#Metrics {
+  height: 100%;
+  padding: 1rem 0 1rem 0;
+}
+
+#Battery {
+  height: 100%;
+  padding: 1rem 0 1rem 0;
+}
+
+#Sensors {
+  height: 100%;
+  padding: 1rem 0 1rem 0;
 }
