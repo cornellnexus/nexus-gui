@@ -16,12 +16,10 @@ function App() {
         <Route path="/" element={<Navbar />}>
           <Route path="" element={<Login />} />
         </Route>
-        <Route path="/" element={<Sidebar />}>
-          <Route path="/mission" element={<Mission />} />
-          <Route path="/overview" element={<Overview />} />
-          <Route path="/shell" element={<Shell />} />
-          <Route path="/settings" element={<Settings />} />
-        </Route>
+        <Route path="/mission" element={<Mission />} />
+        <Route path="/overview" element={<Overview />} />
+        <Route path="/shell" element={<Shell />} />
+        <Route path="/settings" element={<Settings />} />
       </Routes>
     </BrowserRouter>
   );
