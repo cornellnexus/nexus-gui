@@ -1,10 +1,13 @@
 import "./overview.css";
 import Sidebar from "../../components/sidebar/sidebar";
 import Clock from "../../components/clock/clock";
+import { useNavigate } from "react-router-dom";
 
 // https://www.youtube.com/watch?v=wYpCWwD1oz0
 
 function Overview() {
+  let navigate = useNavigate();
+
   return (
     <div className="Overview">
       <div>
@@ -17,7 +20,7 @@ function Overview() {
         <h1 id="Overview-title">Overview</h1>
         <div className="Subcomponent-wrapper">
           <div className="Subcomponent">
-            <div id="Battery" onClick={() => console.log("Clicked")}>
+            <div id="Battery" onClick={() => navigate("/battery")}>
               <h3 className="Subcomponent-title">Battery</h3>
               <p>Battery Level: 54%</p>
               <p>(Battery-Life Remaining)</p>
