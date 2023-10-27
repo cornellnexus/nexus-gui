@@ -1,11 +1,8 @@
 import "./battery.css";
 import Sidebar from "../../components/sidebar/sidebar";
 import Clock from "../../components/clock/clock";
-import { useNavigate } from "react-router-dom";
 
 function Battery() {
-  let navigate = useNavigate();
-
   return (
     <div className="Battery-overview">
       <div>
@@ -15,7 +12,14 @@ function Battery() {
         <div className="clock">
           <Clock />
         </div>
-        <h1 id="Battery-title">Battery</h1>
+        <h1 id="Battery-title">Battery Details</h1>
+        <div className="Battery-wrapper">
+          <div className="Battery-subcomponent">
+            <p>Battery percentage: 54%</p>
+            <p>Low Power Mode: On/Off</p>
+            <p>Time Till Recharge: 03:45:13</p>
+          </div>
+        </div>
       </div>
     </div>
   );
