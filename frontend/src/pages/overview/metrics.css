@@ -1,0 +1,47 @@
+.Metrics-overview {
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  display: flex;
+}
+
+.Metrics-component {
+  height: 100%;
+  width: 100%;
+  display: block;
+  text-align: center;
+  border: 2px black solid;
+  border-radius: 10px;
+  margin: 1rem 1rem 0 1rem;
+  box-shadow: 0px 5px 18px #9d9c9c;
+}
+
+.Metrics-wrapper {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  height: auto;
+}
+
+.Metrics-subcomponent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1.5px black solid;
+  margin: 1rem 1rem 2rem 1rem;
+  padding: 1rem 2rem 1rem 2rem;
+  flex: 1;
+  min-height: 200px;
+  font-size: 1rem;
+}
+
+#Metrics-title {
+  text-decoration: underline;
+}
+
+#Goal-title,
+#Robot-title,
+#Misc-title {
+  text-decoration: underline;
+  font-size: 1.2rem;
+}

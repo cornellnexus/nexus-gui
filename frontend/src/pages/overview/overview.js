@@ -36,7 +36,7 @@ function Overview() {
             </div>
           </div>
           <div className="Final-subcomponent">
-            <div id="Metrics" onClick={() => console.log("Clicked")}>
+            <div id="Metrics" onClick={() => navigate("/metrics")}>
               <h3 className="Subcomponent-title">Metrics</h3>
               <p>Goal Location: (Lat, Long)</p>
               <p>Robot Dist. to Goal: 3.537 meters</p>

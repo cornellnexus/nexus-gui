@@ -8,6 +8,7 @@ import Overview from "./pages/overview/overview";
 import Shell from "./pages/shell/shell";
 import Settings from "./pages/settings/settings";
 import Battery from "./pages/overview/battery";
+import Metrics from "./pages/overview/metrics";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/shell" element={<Shell />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/battery" element={<Battery />} />
+        <Route path="/metrics" element={<Metrics />} />
       </Routes>
     </BrowserRouter>
   );
