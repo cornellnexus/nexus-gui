@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 
 function Overview() {
   let navigate = useNavigate();
-
   return (
     <div className="Overview">
       <div>
@@ -27,7 +26,7 @@ function Overview() {
             </div>
           </div>
           <div className="Subcomponent">
-            <div id="Sensors" onClick={() => console.log("Clicked")}>
+            <div id="Sensors" onClick={() => navigate("/sensors")}>
               <h3 className="Subcomponent-title">Sensors</h3>
               <p>Velocity: 12 mph</p>
               <p>Acceleration: +3 mph</p>
