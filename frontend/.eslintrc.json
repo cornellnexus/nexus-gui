@@ -23,6 +23,7 @@
         "react/react-in-jsx-scope": "off",
         "no-const-assign": "warn",
         "no-this-before-super": "warn",
-        "no-unused-vars": "warn"
+        "no-unused-vars": "warn",
+        "prettier/prettier": 0
     }
 }
