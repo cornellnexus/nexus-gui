@@ -10,7 +10,7 @@
   text-align: center;
   border: 2px black solid;
   border-radius: 10px;
-  margin: 1rem 1rem 0 1rem;
+  margin: 1rem 1rem 4rem 1rem;
   box-shadow: 0px 5px 18px #9d9c9c;
 }
 
@@ -36,8 +36,8 @@
   flex-direction: column;
   justify-content: space-between;
   border: 1.5px black solid;
-  margin: 1rem 1rem 2rem 1rem;
-  padding: 1rem 2rem 1rem 2rem;
+  margin: 1rem 1rem 1rem 1rem;
+  padding: 1rem 1rem 1rem 2rem;
   flex: 1;
   font-size: 1rem;
 }
