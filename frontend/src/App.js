@@ -7,7 +7,6 @@ import Mission from "./pages/mission/mission";
 import Overview from "./pages/overview/overview";
 import Shell from "./pages/shell/shell";
 import Settings from "./pages/settings/settings";
-import Sidebar from "./components/sidebar/sidebar";
 import Sensors from "./pages/overview/sensors";
 
 function App() {

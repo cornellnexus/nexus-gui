@@ -26,7 +26,7 @@ function Overview() {
             </div>
           </div>
           <div className="Subcomponent">
-            <div id="Sensors" onClick={() => navigate("Sensors")}>
+            <div id="Sensors" onClick={() => navigate("/sensors")}>
               <h3 className="Subcomponent-title">Sensors</h3>
               <p>Velocity: 12 mph</p>
               <p>Acceleration: +3 mph</p>
