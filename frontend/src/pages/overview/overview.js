@@ -19,7 +19,7 @@ function Overview() {
         <h1 id="Overview-title">Overview</h1>
         <div className="Subcomponent-wrapper">
           <div className="Subcomponent">
-            <div id="Battery" onClick={() => console.log("Clicked")}>
+            <div id="Battery" onClick={() => navigate("/battery")}>
               <h3 className="Subcomponent-title">Battery</h3>
               <p>Battery Level: 54%</p>
               <p>(Battery-Life Remaining)</p>
@@ -35,7 +35,7 @@ function Overview() {
             </div>
           </div>
           <div className="Final-subcomponent">
-            <div id="Metrics" onClick={() => console.log("Clicked")}>
+            <div id="Metrics" onClick={() => navigate("/metrics")}>
               <h3 className="Subcomponent-title">Metrics</h3>
               <p>Goal Location: (Lat, Long)</p>
               <p>Robot Dist. to Goal: 3.537 meters</p>

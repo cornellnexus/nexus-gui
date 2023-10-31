@@ -8,6 +8,8 @@ import Overview from "./pages/overview/overview";
 import Shell from "./pages/shell/shell";
 import Settings from "./pages/settings/settings";
 import Sensors from "./pages/overview/sensors";
+import Battery from "./pages/overview/battery";
+import Metrics from "./pages/overview/metrics";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
         <Route path="/overview" element={<Overview />} />
         <Route path="/shell" element={<Shell />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/battery" element={<Battery />} />
+        <Route path="/metrics" element={<Metrics />} />
         <Route path="/sensors" element={<Sensors />} />
       </Routes>
     </BrowserRouter>
