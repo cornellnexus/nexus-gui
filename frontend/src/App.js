@@ -10,6 +10,8 @@ import Settings from "./pages/settings/settings";
 import Sensors from "./pages/overview/sensors";
 import Battery from "./pages/overview/battery";
 import Metrics from "./pages/overview/metrics";
+import Custom from "./pages/overview/custom/custom";
+import Main_Page from "./pages/overview/custom/main_page";
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
         <Route path="/battery" element={<Battery />} />
         <Route path="/metrics" element={<Metrics />} />
         <Route path="/sensors" element={<Sensors />} />
+        <Route path="/custom" element={<Custom />} />
+        <Route path="/customview" element={<Main_Page />} />
       </Routes>
     </BrowserRouter>
   );

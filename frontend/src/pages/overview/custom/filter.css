@@ -1,0 +1,53 @@
+.filter-sidebar {
+  width: 200px;
+  background-color: #f4f4f4;
+  border-right: 1px solid #ddd;
+  height: 100vh;
+  padding-top: 10px;
+
+}
+
+.filter-sidebar .section {
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.filter-sidebar .section:hover {
+  background-color: #ddd;
+}
+
+.filter-sidebar label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.filter-sidebar h2 {
+  margin-bottom: 0;
+  font-size: 20px;
+
+}
+
+.collapsed {
+  width: 40px;
+}
+
+.collapsed .section {
+  padding: 8px;
+  text-align: center;
+}
+
+.collapsed .section:hover {
+  background-color: transparent;
+}
+
+.collapsed label {
+  display: none;
+}
+
+.collapsed h2 {
+  margin-bottom: 8px;
+}
+
+input[type='checkbox'] {
+  margin-right: 1rem;
+}

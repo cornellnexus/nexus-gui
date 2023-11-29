@@ -1,6 +1,9 @@
 import "./metrics.css";
 import Sidebar from "../../components/sidebar/sidebar";
 import Clock from "../../components/clock/clock";
+import Goal_Location from "./subcomponents/metrics/goal_location";
+import Robot_State from "./subcomponents/metrics/robot_state";
+import Metric_Misc from "./subcomponents/metrics/metrics_misc";
 
 function Metrics() {
   return (
@@ -14,25 +17,9 @@ function Metrics() {
         </div>
         <h1 id="Metrics-title">Metrics Details</h1>
         <div className="Metrics-wrapper">
-          <div className="Metrics-subcomponent">
-            <h1 id="Goal-title">Goal Location</h1>
-            <p>Global Coord: (Lat, Long)</p>
-            <p>Local Coord: (Grid-X, Grid-Y)</p>
-            <p>Goal-Dist: 3.141592 m</p>
-          </div>
-          <div className="Metrics-subcomponent">
-            <h1 id="Robot-title">Robot State</h1>
-            <p>Global Coord: (Lat, Long)</p>
-            <p>Local Coord: (Grid-X, Grid-Y)</p>
-            <p>Heading: 90°</p>
-          </div>
-          <div className="Metrics-subcomponent">
-            <h1 id="Misc-title">Miscellaneous</h1>
-            <p>Phase: Recharge</p>
-            <p>ETA(base): 00:27:45</p>
-            <p>G-Nodes Complete: 7</p>
-            <p>ETA(done): 02:27:45</p>
-          </div>
+          <Goal_Location />
+          <Robot_State />
+          <Metric_Misc />
         </div>
       </div>
     </div>

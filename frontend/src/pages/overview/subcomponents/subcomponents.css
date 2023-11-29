@@ -1,0 +1,16 @@
+.subcomponent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1.5px black solid;
+  margin: 1rem 1rem 2rem 1rem;
+  padding: 1rem 2rem 1rem 2rem;
+  flex: 1;
+  min-height: 200px;
+  font-size: 1rem;
+}
+
+.subcomponent-title {
+  text-decoration: underline;
+  font-size: 1.2rem;
+}

@@ -1,0 +1,23 @@
+.sub-subcomponent {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  height: auto;
+  margin: 0.5rem 0rem;
+  word-wrap: break-word
+}
+
+
+.subsubcomponent-title {
+  width: 20%a
+}
+
+.subsubcomponent-title h3 {
+  font-size: 1rem;
+}
+
+.subsubcomponent-parts {
+  width: 70%;
+  text-align: left;
+}
